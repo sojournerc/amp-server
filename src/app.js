@@ -7,13 +7,15 @@ import serve from 'koa-static';
 import compress from 'koa-compress';
 import hbs from 'koa-hbs';
 
-import polyFill from 'babel-polyfill';
+import fs from 'fs';
 
-import home from './routes/home';
+import polyFill from 'babel-polyfill';
 
 const router = Router();
 const app = koa();
 export default app;
+
+const examples = fs.readdirSync(`${__dirname}/views/examples`);
 
 app.use(logger());
 
@@ -43,7 +45,21 @@ app.use(serve(__dirname + '/public', {
 }));
 
 // serve index
-router.get('/', home);
+router.get('/', function*() {
+  yield this.render('home', {
+    examples: examples.map((ex) => {
+      const slug = ex.replace(/\.hbs$/, '');
+      return {
+        label: slug.replace('-', ' ').toUpperCase(),
+        slug
+      }
+    })
+  });
+});
+
+router.get('/:example', function*() {
+  yield this.render(`examples/${this.params.example}`);
+});
 
 app.use(router.routes());
 

@@ -1,11 +1,10 @@
 
-<div>HELLO</div>
+<h3>Examples</h3>
 
-<amp-img
-  src="/img/happy.jpg"
-  alt="Welcome"
-  height="600"
-  width="800"
-  layout="responsive"
-></amp-img>
-
+<ul>
+  {{#each examples}}
+  <li>
+    <a href="/{{slug}}">{{label}}</a>
+  </li>
+  {{/each}}
+</ul>
