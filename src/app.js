@@ -47,6 +47,7 @@ app.use(serve(__dirname + '/public', {
 // serve index
 router.get('/', function*() {
   yield this.render('home', {
+    page_path: `/`,
     examples: examples.map((ex) => {
       const slug = ex.replace(/\.hbs$/, '');
       return {
@@ -58,7 +59,10 @@ router.get('/', function*() {
 });
 
 router.get('/:example', function*() {
-  yield this.render(`examples/${this.params.example}`);
+  yield this.render(`examples/${this.params.example}`, {
+    show_back: true,
+    page_path: `/${this.params.example}`,
+  });
 });
 
 app.use(router.routes());
