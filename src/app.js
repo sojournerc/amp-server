@@ -7,6 +7,8 @@ import serve from 'koa-static';
 import compress from 'koa-compress';
 import hbs from 'koa-hbs';
 
+import polyFill from 'babel-polyfill';
+
 import home from './routes/home';
 
 const router = Router();
@@ -41,7 +43,7 @@ app.use(serve(__dirname + '/public', {
 }));
 
 // serve index
-router.get('/', index);
+router.get('/', home);
 
 app.use(router.routes());
 
@@ -49,5 +51,6 @@ process.on('uncaughtException', function(err) {
   console.error('Caught exception: ' + err);
 });
 
-app.listen(5000)
+const port = 5000;
+app.listen(port);
 console.info('listening on port ' + port)
