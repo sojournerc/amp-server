@@ -6,6 +6,7 @@ import logger from 'koa-logger';
 import serve from 'koa-static';
 import compress from 'koa-compress';
 import hbs from 'koa-hbs';
+import koaBody from 'koa-body';
 
 import fs from 'fs';
 
@@ -61,8 +62,13 @@ router.get('/', function*() {
 router.get('/:example', function*() {
   yield this.render(`examples/${this.params.example}`, {
     show_back: true,
-    page_path: `/${this.params.example}`,
+    page_path: `/${this.params.example}`
   });
+});
+
+router.post('/submit/test', koaBody({ multipart: true }), function*() {
+  this.status = 201;
+  this.body = this.request.body.fields;
 });
 
 app.use(router.routes());
