@@ -52,7 +52,7 @@ router.get('/', function*() {
     examples: examples.map((ex) => {
       const slug = ex.replace(/\.hbs$/, '');
       return {
-        label: slug.replace('-', ' ').toUpperCase(),
+        label: slug.replace(/\-/g, ' ').toUpperCase(),
         slug
       }
     })
@@ -66,9 +66,9 @@ router.get('/:example', function*() {
   });
 });
 
-router.post('/submit/test', koaBody({ multipart: true }), function*() {
+router.post('/submit/test', koaBody(), function*() {
   this.status = 201;
-  this.body = this.request.body.fields;
+  this.body = this.request.body;
 });
 
 app.use(router.routes());

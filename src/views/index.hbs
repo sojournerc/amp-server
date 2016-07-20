@@ -19,9 +19,29 @@
         color: #212121;
         padding: 1em;
       }
+      .user-notification {
+        position: absolute;
+        top: 1em; right: 1em; bottom: 1em; left: 1em;
+        padding: 2em;
+        background: pink;
+        width: auto;
+      }
     </style>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/ramda/0.21.0/ramda.min.js'></script>
-    <script src='/js/some-script.js'></script>
+
+    {{!-- youtube --}}
+    <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
+    {{!-- carousel --}}
+    <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+    {{!-- form --}}
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+    {{!-- iframe --}}
+    <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+
+    {{!-- user notification --}}
+    <script async custom-element="amp-user-notification" src="https://cdn.ampproject.org/v0/amp-user-notification-0.1.js"></script>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+
+    {{!-- AMP core --}}
     <script async src="https://cdn.ampproject.org/v0.js"></script>
   </head>
   <body>
